@@ -115,3 +115,39 @@ const data = [
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+
+function haberYapici(paramHaber) {
+  const habArticle = document.createElement("div");
+  const title = document.createElement("h2");
+  const hDate = document.createElement("p");
+  const paragrafBir = document.createElement("p");
+  const paragrafİki = document.createElement("p");
+  const ParagrafUc= document.createElement("p");
+  const btn= document.createElement("span");
+
+  habArticle.append(title, hDate, paragrafBir,paragrafİki,ParagrafUc,btn);
+  
+  habArticle.classList.add("article");
+  hDate.classList.add("date");
+  btn.classList.add("expandButton");
+
+  title.textContent= paramHaber.baslik;
+  hDate.textContent= paramHaber.date;
+  paragrafBir.textContent= paramHaber.ilkParagraf;
+  paragrafİki.textContent= paramHaber.ikinciParagraf;
+  ParagrafUc.textContent=paramHaber.ucuncuParagraf;
+  btn.textContent="+";
+
+  btn.addEventListener("click", ()=>{
+    habArticle.classList.toggle("article-open");
+  });
+
+  return habArticle;
+
+
+}
+
+const articles = document.querySelector(".articles");
+data.map((haber)=>{
+  articles.appendChild(haberYapici(haber))
+});
